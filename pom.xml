@@ -19,7 +19,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.google.doclava</groupId>
     <artifactId>doclava</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     <packaging>jar</packaging>
     <name>Doclava</name>
     <description>Doclava is a Javadoc Doclet that generates documentation for Java projects</description>
@@ -112,8 +112,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <javac.src.version>8</javac.src.version>
-        <javac.target.version>8</javac.target.version>
+        <javac.src.version>17</javac.src.version>
+        <javac.target.version>17</javac.target.version>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ssZ</maven.build.timestamp.format>
         <implementation.build>r${buildNumber}; ${maven.build.timestamp}</implementation.build>
     </properties>
@@ -267,6 +267,26 @@
                 </dependency>
             </dependencies>
         </profile>
+        <profile>
+            <id>jdk-9-or-higher</id>
+            <activation>
+                <jdk>[9,)</jdk>
+            </activation>
+            <build>
+            	<plugins>
+            		<plugin>
+    					<groupId>org.apache.maven.plugins</groupId>
+    					<artifactId>maven-compiler-plugin</artifactId>
+    					<configuration>
+        					<compilerArgs>
+            					<arg>--add-modules</arg>
+            					<arg>jdk.javadoc</arg>
+        					</compilerArgs>
+    					</configuration>
+					</plugin>
+            	</plugins>
+            </build>
+    	</profile>
 
         <profile>
             <id>release</id>
