@@ -254,7 +254,7 @@
         <profile>
             <id>default-tools.jar</id>
             <activation>
-              <jdk>1.8</jdk>
+              <jdk>[8,)</jdk>
             </activation>
             <dependencies>
                 <dependency>
@@ -262,31 +262,11 @@
                     <artifactId>tools</artifactId>
                     <version>1.8.0</version> <!-- Changed version for Ooyala -->
                     <scope>system</scope>
-                    <systemPath>${java.home}/../lib/tools.jar</systemPath>
+                    <systemPath>/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/lib/tools.jar</systemPath>
                     <optional>true</optional>
                 </dependency>
             </dependencies>
         </profile>
-        <profile>
-            <id>jdk-9-or-higher</id>
-            <activation>
-                <jdk>[9,)</jdk>
-            </activation>
-            <build>
-            	<plugins>
-            		<plugin>
-    					<groupId>org.apache.maven.plugins</groupId>
-    					<artifactId>maven-compiler-plugin</artifactId>
-    					<configuration>
-        					<compilerArgs>
-            					<arg>--add-modules</arg>
-            					<arg>jdk.javadoc</arg>
-        					</compilerArgs>
-    					</configuration>
-					</plugin>
-            	</plugins>
-            </build>
-    	</profile>
 
         <profile>
             <id>release</id>
